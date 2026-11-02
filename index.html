@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="theme-color" content="#42b6c8" />
+    <title>Дія</title>
+    <link rel="stylesheet" href="style.css?v=20261101-2152" />
+  </head>
+  <body>
+    <!-- Основна оболонка застосунку та перемикання між екранами. -->
+    <div class="app">
+      <div class="pages">
+        <section class="page doc-page active" id="page-docs">
+          <div class="card-hint"></div>
+          <div class="card-count" id="cardCount">01 / 07</div>
+          <div class="carousel" id="carousel"></div>
+          <div class="dots" id="dots"></div>
+        </section>
+        <section class="page feed-page" id="page-feed">
+          <header class="feed-greeting">
+            <h1>
+              Привіт, <span id="feedGreetingName">Дмитро</span>
+              <span aria-hidden="true">👋</span>
+            </h1>
+          </header>
+          <div class="feed-content">
+            <button
+              type="button"
+              class="feed-notice-card"
+              data-feed-action="resilience"
+            >
+              <div class="feed-notice-copy">
+                <span class="feed-eyebrow">ПІДТРИМКА ПОРУЧ</span
+                ><strong>Незламність</strong
+                ><span
+                  >Мапа укриттів, пункти незламності та більше пунктів допомоги.
+                  Завжди під рукою.</span
+                >
+                <div class="feed-mini-icons"><i>✦</i><i>●</i><i>▥</i></div>
+              </div>
+              <span class="feed-arrow" aria-hidden="true"
+                ><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+              ></span>
+            </button>
+            <div class="feed-shortcuts" aria-label="Швидкі дії">
+              <button
+                type="button"
+                class="feed-shortcut"
+                data-feed-action="scanner"
+              >
+                <span class="feed-shortcut-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path d="M5 9V5h4m6 0h4v4m0 6v4h-4m-6 0H5v-4" />
+                    <path
+                      d="M9 9h2v2H9zm4 0h2v2h-2zm-4 4h2v2H9zm4 0h4v2h-4zm3 3h2v2h-2z"
+                    /></svg></span
+                ><span>Дія Сканер</span>
+              </button>
+              <button
+                type="button"
+                class="feed-shortcut"
+                data-feed-action="bonds"
+              >
+                <span class="feed-shortcut-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 3v18M6 4v5a6 6 0 0 0 12 0V4M6 4 4 2m14 2 2-2M7 13c1.2 1.6 2.8 2.4 5 2.4s3.8-.8 5-2.4M9 18l3-2 3 2"
+                    /></svg></span
+                ><span>Військові<br />облігації</span>
+              </button>
+              <button
+                type="button"
+                class="feed-shortcut"
+                data-feed-action="offline"
+              >
+                <span class="feed-shortcut-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M3.5 8.5a13 13 0 0 1 17 0M7 12a8 8 0 0 1 9.2-1.2M10.5 15.7a4 4 0 0 1 3.2.2M4 4l16 16"
+                    /></svg></span
+                ><span>Відсутній<br />зв’язок</span>
+              </button>
+            </div>
+            <button
+              type="button"
+              class="feed-campaign-card"
+              data-feed-action="campaign"
+            >
+              <span class="campaign-pattern" aria-hidden="true"
+                >✦　◈　✦<br />◈　✧　◈</span
+              >
+              <span class="campaign-mark"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 3v18M6 4v5a6 6 0 0 0 12 0V4M6 4 4 2m14 2 2-2M7 13c1.2 1.6 2.8 2.4 5 2.4s3.8-.8 5-2.4M9 18l3-2 3 2"
+                  /></svg
+              ></span>
+              <span class="campaign-title">ЛІНІЯ<br />ДРОНІВ</span>
+              <span class="campaign-footer"
+                ><span>Змінити хід подій</span
+                ><i class="feed-arrow"
+                  ><svg viewBox="0 0 24 24">
+                    <path d="M5 12h14m-6-6 6 6-6 6" /></svg></i
+              ></span>
+            </button>
+            <button
+              type="button"
+              class="feed-cashback-card"
+              data-feed-action="cashback"
+            >
+              <span class="cashback-amount">21.15 грн</span
+              ><span class="cashback-caption"
+                >Накопичено кешбеку за вересень</span
+              >
+              <span class="cashback-progress" aria-hidden="true"
+                ><i></i><i></i><i></i><i></i><i></i></span
+              ><span class="feed-arrow"
+                ><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+              ></span>
+            </button>
+            <section class="feed-news-section">
+              <div class="feed-section-heading">
+                <h2>Що нового?</h2>
+                <span id="feedNewsCount">01 / 03</span>
+              </div>
+              <div
+                class="feed-story-carousel"
+                id="feedStoryCarousel"
+                aria-label="Новини, гортайте вбік"
+              >
+                <article class="feed-story-card">
+                  <div class="feed-story-art story-art-grants">
+                    <span>⏰</span><span>💼</span>
+                  </div>
+                  <div class="feed-story-copy">
+                    <small>ОНОВЛЕННЯ · СЬОГОДНІ</small>
+                    <h3>Перевірте доступні грантові можливості</h3>
+                    <button
+                      type="button"
+                      data-feed-action="story"
+                      data-story="grants"
+                    >
+                      Детальніше <span>→</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="feed-story-card">
+                  <div class="feed-story-art story-art-vote">
+                    <span>✦</span><span>✓</span>
+                  </div>
+                  <div class="feed-story-copy">
+                    <small>ДОЛУЧАЙТЕСЯ</small>
+                    <h3>Опитування, що допомагають змінювати сервіси</h3>
+                    <button
+                      type="button"
+                      data-feed-action="story"
+                      data-story="poll"
+                    >
+                      Детальніше <span>→</span>
+                    </button>
+                  </div>
+                </article>
+                <article class="feed-story-card">
+                  <div class="feed-story-art story-art-safety">
+                    <span>◈</span><span>⌂</span>
+                  </div>
+                  <div class="feed-story-copy">
+                    <small>КОРИСНО ЗНАТИ</small>
+                    <h3>Як підготуватися до відсутності зв’язку</h3>
+                    <button
+                      type="button"
+                      data-feed-action="story"
+                      data-story="offline"
+                    >
+                      Детальніше <span>→</span>
+                    </button>
+                  </div>
+                </article>
+              </div>
+              <div
+                class="feed-story-dots"
+                id="feedStoryDots"
+                aria-label="Сторінки новин"
+              ></div>
+            </section>
+            <section class="feed-popular-section">
+              <div class="feed-section-heading">
+                <h2>Популярні послуги</h2>
+                <button type="button" id="feedSeeAll">
+                  Усі <span>→</span>
+                </button>
+              </div>
+              <div class="feed-service-list">
+                <button
+                  type="button"
+                  data-feed-action="service"
+                  data-service="poll"
+                >
+                  <span class="feed-service-icon service-vote">✦</span
+                  ><span>Опитування<small>Діліться своєю думкою</small></span
+                  ><span class="feed-service-arrow"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                  ></span>
+                </button>
+                <button
+                  type="button"
+                  data-feed-action="service"
+                  data-service="military"
+                >
+                  <span class="feed-service-icon service-id">▤</span
+                  ><span
+                    >Заміна військового посвідчення<small
+                      >Інформація про послугу</small
+                    ></span
+                  ><span class="feed-service-arrow"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                  ></span>
+                </button>
+                <button
+                  type="button"
+                  data-feed-action="service"
+                  data-service="tax"
+                >
+                  <span class="feed-service-icon service-tax">₴</span
+                  ><span>Податки ФОП<small>Податкові послуги</small></span
+                  ><span class="feed-service-arrow"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                  ></span>
+                </button>
+              </div>
+            </section>
+            
+          </div>
+        </section>
+        <section class="page ai-page" id="page-ai">
+          <header class="ai-topbar">
+            <button
+              class="ai-icon-button"
+              id="aiMenuButton"
+              aria-label="Меню Дія.АІ"
+              aria-expanded="false"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <div class="ai-menu-popover" id="aiMenuPopover" hidden>
+              <button type="button" id="aiNewChat">Нова розмова</button>
+              <button type="button" id="aiAbout">Про тестовий режим</button>
+            </div>
+            <button
+              class="ai-icon-button"
+              id="aiSearchButton"
+              aria-label="Пошук у розмові"
+              aria-expanded="false"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.5" />
+                <path d="m16 16 4.2 4.2" />
+              </svg>
+            </button>
+          </header>
+          <div class="ai-test-ticker">
+            <span
+              >Працюю в тестовому режимі　•　Працюю в тестовому
+              режимі　•　Працюю в тестовому режимі　•　</span
+            >
+          </div>
+          <div class="ai-search-wrap" id="aiSearchWrap" hidden>
+            <input
+              id="aiSearchInput"
+              type="search"
+              placeholder="Знайти в розмові..."
+              autocomplete="off"
+            />
+            <button type="button" id="aiSearchClose" aria-label="Закрити пошук">
+              ×
+            </button>
+          </div>
+          <main class="ai-chat-area" id="aiChatArea">
+            <div class="ai-day-heading">
+              <span>Сьогодні</span>
+              <button
+                id="aiCollapseToggle"
+                aria-label="Згорнути повідомлення"
+                aria-expanded="true"
+              >
+                <svg viewBox="0 0 20 20"><path d="m5 12 5-5 5 5" /></svg>
+              </button>
+            </div>
+            <div class="ai-messages" id="aiMessages">
+              <article
+                class="ai-message-item ai-assistant-item"
+                data-ai-message
+              >
+                <span class="ai-message-star" aria-hidden="true">✦</span>
+                <div class="ai-message-content">
+                  <p>
+                    Розкажу про можливість інвестувати у військові облігації
+                    через Дію та отримати дохід.
+                  </p>
+                  <p>
+                    Це не лише підтримка армії та економіки, а й можливість
+                    отримати прибуток. Актуальні умови й дохідність перевіряйте
+                    в офіційному сервісі.
+                  </p>
+                  <div class="ai-message-divider"></div>
+                  <button class="ai-explain-button" id="aiExplain">
+                    Розповісти детальніше?
+                  </button>
+                  <div class="ai-feedback-row">
+                    <button
+                      type="button"
+                      class="ai-feedback-button"
+                      data-feedback="like"
+                      aria-label="Корисна відповідь"
+                      aria-pressed="false"
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M7 10v10H4V10h3Zm0 9h9.2a2 2 0 0 0 1.9-1.4l1.3-4.7a2 2 0 0 0-1.9-2.5H14l.7-3.1a2 2 0 0 0-1.1-2.2l-.8-.4L9.5 10 7 12"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      class="ai-feedback-button"
+                      data-feedback="dislike"
+                      aria-label="Не корисна відповідь"
+                      aria-pressed="false"
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M7 14V4H4v10h3Zm0-9h9.2a2 2 0 0 1 1.9 1.4l1.3 4.7a2 2 0 0 1-1.9 2.5H14l.7 3.1a2 2 0 0 1-1.1 2.2l-.8.4L9.5 14 7 12"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      class="ai-feedback-button"
+                      id="aiCopyAnswer"
+                      aria-label="Скопіювати відповідь"
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <rect x="8" y="8" width="12" height="12" rx="2" />
+                        <path
+                          d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </article>
+              <div class="ai-message-item ai-user-item" data-ai-message>
+                <span>Так, цікаво</span>
+              </div>
+              <div class="ai-message-item ai-user-item" data-ai-message>
+                <span>Які облігації зараз доступні?</span>
+              </div>
+            </div>
+          </main>
+          <div class="ai-quick-prompts" id="aiQuickPrompts" hidden>
+            <button type="button" data-ai-prompt="Як працює Дія.АІ?">
+              Як працює Дія.АІ?
+            </button>
+            <button
+              type="button"
+              data-ai-prompt="Допоможи знайти потрібний сервіс"
+            >
+              Знайти сервіс
+            </button>
+          </div>
+          <div class="ai-composer">
+            <button
+              type="button"
+              class="ai-spark-button"
+              id="aiSparkButton"
+              aria-label="Підказки"
+            >
+              <svg viewBox="0 0 32 32">
+                <path
+                  d="m16 3 2.5 9.5L28 15l-9.5 2.5L16 27l-2.5-9.5L4 15l9.5-2.5L16 3Z"
+                />
+                <path
+                  d="m25 22 .9 3.1L29 26l-3.1.9L25 30l-.9-3.1L21 26l3.1-.9L25 22Z"
+                />
+              </svg>
+            </button>
+            <input
+              class="ai-input"
+              id="aiInput"
+              placeholder="Чим можу допомогти?"
+              autocomplete="off"
+            />
+            <button
+              type="button"
+              class="ai-send-button"
+              id="aiSubmit"
+              aria-label="Надіслати"
+            >
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+          <div
+            class="ai-toast"
+            id="aiToast"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </section>
+        <!-- Сервіси: щоб змінити картку, відредагуйте назву, SVG-іконку та data-search. -->
+        <section class="page services-page" id="page-services">
+          <div class="services-title"><h1>Сервіси</h1></div>
+          <label class="services-search-wrap" aria-label="Пошук сервісів"
+            ><span class="search-glass" aria-hidden="true"></span
+            ><input
+              class="service-search"
+              id="serviceSearch"
+              placeholder="Пошук"
+              autocomplete="off"
+          /></label>
+          <div class="services-grid" id="servicesGrid">
+            <button
+              class="service-tile"
+              type="button"
+              data-search="допомога армії"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M5 12h14M8 12l1.5 7h5L16 12M7 12V9a5 5 0 0 1 10 0v3M12 4v2M4 9H2M22 9h-2"
+                  /></svg></span
+              ><span>Допомога армії</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="незламність"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path d="m13.5 2-8 11h5l-.5 9 8-12h-5z" /></svg></span
+              ><span>Незламність</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="дія картка дія.картка"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <rect x="3.5" y="5" width="17" height="14" rx="2.5" />
+                  <path d="M4 9h16M7 14h4" /></svg></span
+              ><span>Дія.Картка</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="військові облігації"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path d="M12 3v18M7 5l5 2 5-2v11l-5 3-5-3z" />
+                  <path d="m7 5 5 2v12M17 5l-5 2" /></svg></span
+              ><span>Військові облігації</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="лінія дронів"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path d="M4 12h16M7 7l5 5-5 5M17 8v8" /></svg></span
+              ><span>Лінія дронів</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="національний кешбек кешбек"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M4 6v12M7 5v14M10 6v12M13 5v14M16 6v12M19 5v14M22 7v10"
+                  /></svg></span
+              ><span>Національний кешбек</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="перенесення номера"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <rect x="5" y="3" width="14" height="18" rx="2.5" />
+                  <path d="M9 7h6v6H9zM9 17h6" /></svg></span
+              ><span>Перенесення номера</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="євідновлення відновлення"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="m14 6 4 4M4 20l4.5-1 10-10a2.8 2.8 0 0 0-4-4l-10 10zM13 19h7"
+                  /></svg></span
+              ><span>єВідновлення</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="міжнародний реєстр збитків"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M5 4h10l4 4v12H5zM15 4v5h4M8 13l2 2 5-5M8 18h8"
+                  /></svg></span
+              ><span>Міжнародний Реєстр збитків</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="ветеранський спорт"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M3 9v6M6 6v12M9 10v4M15 10v4M18 6v12M21 9v6M9 12h6"
+                  /></svg></span
+              ><span>Ветеранський спорт</span>
+            </button>
+            <button
+              class="service-tile"
+              type="button"
+              data-search="шлюб онлайн"
+            >
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 20S4 15 4 9a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z"
+                  /></svg></span
+              ><span>Шлюб онлайн</span>
+            </button>
+            <button class="service-tile" type="button" data-search="ємалятко">
+              <span class="tile-icon"
+                ><svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="8" />
+                  <path
+                    d="M9 13s1 2 3 2 3-2 3-2M9 9h.01M15 9h.01"
+                  /></svg></span
+              ><span>єМалятко</span>
+            </button>
+          </div>
+          <div class="service-empty" id="serviceEmpty" hidden>
+            Нічого не знайдено
+          </div>
+        </section>
+        <!-- Профіль: демо-дані та елементи редагування користувача. -->
+        <section class="page" id="page-menu">
+          <header class="topline">
+            <div class="brand"><span class="brandmark">♜</span> дія</div>
+            <span class="demopill"><i></i></span>
+          </header>
+          <div class="heading">
+            <p class="kicker">МЕНЮ</p>
+            <h1>Ваш профіль</h1>
+            <p>Керуйте даними на своєму пристрої.</p>
+          </div>
+          <div class="profile-hero">
+            <div class="profile-avatar" id="profileAvatar">♜</div>
+            <div>
+              <b id="profileName">Марія Демонстраційна</b
+              ><small>Особисті дані · лише на пристрої</small>
+            </div>
+            <span class="demopill" style="margin-left: auto">✎ </span>
+          </div>
+          <div class="section">
+            Фотографія <small>відображатиметься в документах</small>
+          </div>
+          <div class="surface photo-settings">
+            <div class="photo-preview" id="photoPreview">♙</div>
+            <div class="photo-actions">
+              <b>Фото профілю</b>
+              <p>
+                Вибери фото з пристрою. Воно з’явиться в картках документів у
+                цьому макеті.
+              </p>
+              <label class="photo-pick" for="profilePhotoInput"
+                >＋ Вибрати фотографію</label
+              >
+              <input
+                id="profilePhotoInput"
+                type="file"
+                accept="image/*"
+                hidden
+              />
+              <button
+                type="button"
+                class="photo-remove"
+                id="removeProfilePhoto"
+              >
+                Видалити фото
+              </button>
+              <div class="save-msg" id="photoMsg" aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="section">
+            Особисті дані <small>усі поля обов’язкові</small>
+          </div>
+          <div class="surface">
+            <label class="field"
+              ><span>Прізвище</span
+              ><input
+                id="surname"
+                value="Демонстраційна"
+                autocomplete="family-name" /></label
+            ><label class="field"
+              ><span>Ім’я</span
+              ><input
+                id="given"
+                value="Марія"
+                autocomplete="given-name" /></label
+            ><label class="field"
+              ><span>По батькові</span
+              ><input id="middle" value="Демівна" /></label
+            ><label class="field"
+              ><span>Дата народження</span
+              ><input id="birth" type="date" value="1994-05-12"
+            /></label>
+            <div class="section">
+              Дані повної інформації <small></small>
+            </div>
+            <label class="field"
+              ><span>Місто народження</span
+              ><input
+                id="birthCity"
+                value="Дніпро"
+                autocomplete="address-level2"
+              />
+            </label>
+            <label class="field"
+              ><span>Дата видачі документа</span
+              ><input id="documentIssueDate" type="date" value="2022-10-28" />
+              /></label
+            >
+            <label class="field"
+              ><span>Дійсний до</span
+              ><input id="documentExpiryDate" type="date" value="2028-12-15" />
+              /></label
+            >
+            <label class="field"
+              ><span>Орган, що видав</span
+              ><input id="documentAuthority" value="262"
+            /></label>
+            <div class="section">
+              Номери документів <small>локальні демо-дані</small>
+            </div>
+            <label class="field"
+              ><span>РНОКПП</span
+              ><input
+                id="taxNumber"
+                type="text"
+                value="516406916"
+                inputmode="numeric"
+                autocomplete="off"
+            /></label>
+            <label class="field"
+              ><span>Номер паспорта громадянина (демо)</span
+              ><input
+                id="passportNumber"
+                type="text"
+                value="86260914"
+                maxlength="18"
+                autocomplete="off"
+            /></label>
+            <small class="field-hint"
+              >Літери й цифри доступні; значення змінюється лише в локальному
+              демонстраційному макеті.</small
+            >
+            <label class="field"
+              ><span>Номер закордонного паспорта (демо)</span
+              ><input
+                id="foreignPassportNumber"
+                type="text"
+                value="DEMO-PP-7316-2048"
+                maxlength="24"
+                autocomplete="off"
+            /></label>
+            <small class="field-hint"
+              >Можна вводити літери й цифри. Номер використовується лише в
+              локальному макеті.</small
+            >
+            <label class="field"
+              ><span>Номер посвідчення водія (демо)</span
+              ><input
+                id="driverLicenseNumber"
+                type="text"
+                value="BX183546"
+                maxlength="24"
+                autocomplete="off"
+            /></label>
+            <small class="field-hint"
+              >Літери й цифри доступні; значення змінюється лише в локальному
+              демонстраційному макеті.</small
+            >
+            <div class="section">Зелена стрічка <small>дата й час</small></div>
+            <label class="field"
+              ><span>Час оновлення документа</span
+              ><input id="documentUpdateTime" type="time" value="12:00" />
+            </label>
+            <small class="field-hint"
+              >Автоматично встановлюється на 2 год 20 хв раніше за час відкриття
+              застосунку. За потреби змініть вручну та збережіть.</small
+            >
+            <label class="field"
+              ><span>Дата оновлення документа</span
+              ><input id="documentUpdateDate" type="date" value="2026-10-28" />
+            </label>
+            <small class="field-hint"
+              >Автоматично встановлюється на чотири дні раніше за дату відкриття
+              застосунку. Дату можна змінити вручну.</small
+            >
+            <label class="field student-number-field"
+              ><span>Номер демо-картки студента</span
+              ><input
+                id="studentTicketNumber"
+                type="text"
+                value="DEMO-STU-2026-001"
+                maxlength="24"
+                autocomplete="off"
+                aria-describedby="studentTicketHint"
+            /></label>
+            <small id="studentTicketHint" class="field-hint"
+              >Лише для вигаданого макета, не є дійсним квитком.</small
+            >
+          </div>
+          <button class="save" id="saveProfile">✓ &nbsp; Зберегти зміни</button>
+          <div class="save-msg" id="saveMsg"></div>
+          <div class="section">
+            Графічний підпис <small>малюй пальцем або мишкою</small>
+          </div>
+          <div class="surface signature-editor">
+            <p>
+              Підпис з’явиться лише в демонстраційному макеті паспорта та
+              збережеться на цьому пристрої.
+            </p>
+            <canvas
+              id="signatureCanvas"
+              class="signature-canvas"
+              aria-label="Поле для малювання демонстраційного підпису"
+              role="img"
+            ></canvas>
+            <div class="signature-actions">
+              <button
+                type="button"
+                id="clearSignature"
+                class="signature-secondary"
+              >
+                Очистити
+              </button>
+              <button
+                type="button"
+                id="saveSignature"
+                class="signature-primary"
+              >
+                Зберегти підпис
+              </button>
+            </div>
+            <div
+              class="save-msg"
+              id="signatureMsg"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </div>
+          <div class="disclaimer">
+            ▯ Дані зберігаються лише локально у браузері.<br />Сервер не отримує
+            ці поля.
+          </div>
+          <button
+            id="resetProfile"
+            style="
+              display: block;
+              margin: 14px auto;
+              border: 0;
+              background: none;
+              color: #246bfd;
+              font-size: 12px;
+              font-weight: 700;
+            "
+          >
+            Відновити демонстраційний профіль
+          </button>
+          <div class="foot"></div>
+        </section>
+      </div>
+      <div
+        class="feed-modal-backdrop"
+        id="feedModalBackdrop"
+        aria-hidden="true"
+        hidden
+      >
+        <section
+          class="feed-modal-sheet"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="feedModalTitle"
+        >
+          <div class="feed-modal-handle"></div>
+          <button
+            type="button"
+            class="feed-modal-close"
+            id="feedModalClose"
+            aria-label="Закрити"
+          >
+            ×
+          </button>
+          <h2 id="feedModalTitle"></h2>
+          <div class="feed-modal-body" id="feedModalBody"></div>
+          <video
+            id="scannerVideo"
+            class="scanner-video"
+            playsinline
+            muted
+            hidden
+          ></video>
+          <canvas id="scannerCanvas" hidden></canvas>
+          <div id="scannerStatus" class="scanner-status" hidden></div>
+          <input
+            id="scannerImageInput"
+            type="file"
+            accept="image/*"
+            capture="environment"
+            hidden
+          />
+          <div class="feed-modal-actions">
+            <button
+              type="button"
+              class="feed-modal-secondary"
+              id="feedModalSecondary"
+              hidden
+            ></button>
+            <button
+              type="button"
+              class="feed-modal-primary"
+              id="feedModalPrimary"
+            >
+              Зрозуміло
+            </button>
+          </div>
+        </section>
+      </div>
+      <!-- Спливаюче меню дій для картки документа. -->
+      <div class="doc-menu-backdrop" id="docMenuBackdrop" aria-hidden="true">
+        <section
+          class="doc-menu-sheet"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Меню документа"
+        >
+          <div class="sheet-actions">
+            <button class="sheet-action" data-doc-action="details">
+              <svg viewBox="0 0 24 24">
+                <rect x="5" y="3.5" width="14" height="17" rx="2.5" />
+                <path d="M8 8h8M8 11h8M8 14h5" /></svg
+              ><span>Повна інформація</span>
+            </button>
+            <button class="sheet-action" data-doc-action="residence">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 20V5.5A2.5 2.5 0 0 1 7.5 3H15l4 4v4" />
+                <path d="M14.5 3v5H19M8 11h7M8 14h4" />
+                <path
+                  d="M17 16.5l4 4M18.8 14.7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
+                /></svg
+              ><span>Витяг про місце проживання</span>
+            </button>
+            <div class="sheet-divider"></div>
+            <button class="sheet-action" data-doc-action="rate">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"
+                /></svg
+              ><span>Оцінити документ</span>
+            </button>
+            <button class="sheet-action" data-doc-action="reorder">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5" /></svg
+              ><span>Змінити порядок документів</span>
+            </button>
+            <button class="sheet-action" data-doc-action="faq">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path
+                  d="M9.5 9a2.6 2.6 0 1 1 4.5 1.8c-1.2 1.1-2 1.4-2 3M12 17.5h.01"
+                /></svg
+              ><span>Питання та відповіді</span>
+            </button>
+          </div>
+          <div class="sheet-codes">
+            <button class="sheet-code" data-doc-action="qr">
+              <span class="code-circle"
+                ><svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="7" height="7" rx="1" />
+                  <rect x="14" y="3" width="7" height="7" rx="1" />
+                  <rect x="3" y="14" width="7" height="7" rx="1" />
+                  <path
+                    d="M14 14h3v3h-3zM19 14v2M14 19h2M19 18v3M17 21h2"
+                  /></svg></span
+              ><span>QR-код</span>
+            </button>
+            <button class="sheet-code" data-doc-action="barcode">
+              <span class="code-circle"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M5 5v14M9 5v14M12 5v14M16 5v14M19 5v14"
+                  /></svg></span
+              ><span>Штрихкод</span>
+            </button>
+          </div>
+        </section>
+        <button class="sheet-close" id="closeDocMenu">Закрити</button>
+        <section
+          class="document-details-sheet"
+          id="documentDetailsSheet"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Повна інформація документа"
+          aria-hidden="true"
+        >
+          <div class="details-grab-area" id="detailsGrabArea">
+            <span class="details-handle"></span>
+          </div>
+          <div class="details-content" id="documentDetailsContent"></div>
+        </section>
+      </div>
+      <div
+        class="utility-modal-backdrop"
+        id="utilityModalBackdrop"
+        aria-hidden="true"
+        hidden
+      >
+        <section class="utility-modal" role="dialog" aria-modal="true">
+          <span class="utility-modal-handle"></span>
+          <h2 id="utilityModalTitle"></h2>
+          <div id="utilityModalBody"></div>
+          <div class="utility-modal-message" id="utilityModalMessage"></div>
+          <button
+            class="utility-modal-primary"
+            id="utilityModalPrimary"
+          ></button>
+          <button class="utility-modal-cancel" id="utilityModalCancel">
+            Скасувати
+          </button>
+        </section>
+      </div>
+      <div
+        class="doc-action-toast"
+        id="docActionToast"
+        role="status"
+        aria-live="polite"
+      ></div>
+      <!-- Нижня панель вкладок формується зі списку tabs у app.js. -->
+      <nav class="nav" id="nav"></nav>
+    </div>
+    <script src="vendor/jsQR.js" defer></script>
+    <script src="app.js?v=20261101-2152" defer></script>
+  </body>
+</html>
